@@ -1,0 +1,14 @@
+{
+  "name": "fantasy-basketball-showdown",
+  "version": "1.0.0",
+  "description": "A two player 9-category fantasy basketball game that uses real NBA stats",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Chernor Hamza J",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

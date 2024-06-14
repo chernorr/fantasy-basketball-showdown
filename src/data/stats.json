@@ -1,0 +1,52 @@
+{
+    "players": [
+      {
+        "name": "Shai Gilgeous-Alexander",
+        "performances": [
+          { "points": 40, "rebounds": 5, "assists": 12, "steals": 1, "blocks": 3, "fgMade": 11, "fgAttempts": 19, "ftMade": 17, "ftAttempts": 18, "threePointers": 1, "turnovers": 2 },
+          { "points": 43, "rebounds": 7, "assists": 6, "steals": 2, "blocks": 1, "fgMade": 15, "fgAttempts": 22, "ftMade": 12, "ftAttempts": 13, "threePointers": 1, "turnovers": 3 },
+          { "points": 36, "rebounds": 7, "assists": 8, "steals": 2, "blocks": 2, "fgMade": 13, "fgAttempts": 23, "ftMade": 8, "ftAttempts": 9, "threePointers": 2, "turnovers": 1 }
+        ]
+      },
+      {
+        "name": "Nikola Jokic",
+        "performances": [
+          { "points": 42, "rebounds": 12, "assists": 8, "steals": 2, "blocks": 2, "fgMade": 15, "fgAttempts": 20, "ftMade": 12, "ftAttempts": 14, "threePointers": 0, "turnovers": 0 },
+          { "points": 40, "rebounds": 7, "assists": 13, "steals": 2, "blocks": 1, "fgMade": 15, "fgAttempts": 22, "ftMade": 8, "ftAttempts": 9, "threePointers": 2, "turnovers": 0 },
+          { "points": 41, "rebounds": 11, "assists": 7, "steals": 3, "blocks": 0, "fgMade": 16, "fgAttempts": 20, "ftMade": 7, "ftAttempts": 12, "threePointers": 2, "turnovers": 2 }
+        ]
+      },
+      {
+        "name": "Jayson Tatum",
+        "performances": [
+          { "points": 45, "rebounds": 13, "assists": 6, "steals": 0, "blocks": 2, "fgMade": 15, "fgAttempts": 28, "ftMade": 8, "ftAttempts": 10, "threePointers": 7, "turnovers": 3 },
+          { "points": 41, "rebounds": 14, "assists": 5, "steals": 2, "blocks": 1, "fgMade": 14, "fgAttempts": 26, "ftMade": 8, "ftAttempts": 8, "threePointers": 5, "turnovers": 2 },
+          { "points": 36, "rebounds": 10, "assists": 8, "steals": 1, "blocks": 2, "fgMade": 12, "fgAttempts": 23, "ftMade": 7, "ftAttempts": 11, "threePointers": 5, "turnovers": 0 }
+        ]
+      },
+      {
+        "name": "Giannis Antetokounmpo",
+        "performances": [
+          { "points": 64, "rebounds": 14, "assists": 3, "steals": 4, "blocks": 1, "fgMade": 20, "fgAttempts": 28, "ftMade": 24, "ftAttempts": 32, "threePointers": 0, "turnovers": 4 },
+          { "points": 46, "rebounds": 16, "assists": 6, "steals": 1, "blocks": 1, "fgMade": 16, "fgAttempts": 22, "ftMade": 12, "ftAttempts": 16, "threePointers": 2, "turnovers": 1 },
+          { "points": 42, "rebounds": 13, "assists": 8, "steals": 1, "blocks": 1, "fgMade": 20, "fgAttempts": 23, "ftMade": 2, "ftAttempts": 6, "threePointers": 0, "turnovers": 5 }
+        ]
+      },
+      {
+        "name": "Luka Doncic",
+        "performances": [
+          { "points": 73, "rebounds": 10, "assists": 7, "steals": 1, "blocks": 0, "fgMade": 25, "fgAttempts": 33, "ftMade": 15, "ftAttempts": 16, "threePointers": 8, "turnovers": 4 },
+          { "points": 44, "rebounds": 6, "assists": 6, "steals": 1, "blocks": 0, "fgMade": 17, "fgAttempts": 21, "ftMade": 4, "ftAttempts": 4, "threePointers": 6, "turnovers": 1 },
+          { "points": 47, "rebounds": 12, "assists": 7, "steals": 2, "blocks": 0, "fgMade": 18, "fgAttempts": 30, "ftMade": 2, "ftAttempts": 5, "threePointers": 9, "turnovers": 4 }
+        ]
+      },
+      {
+        "name": "Kevin Durant",
+        "performances": [
+          { "points": 38, "rebounds": 9, "assists": 9, "steals": 0, "blocks": 0, "fgMade": 15, "fgAttempts": 22, "ftMade": 2, "ftAttempts": 2, "threePointers": 6, "turnovers": 1 },
+          { "points": 40, "rebounds": 9, "assists": 2, "steals": 0, "blocks": 3, "fgMade": 18, "fgAttempts": 25, "ftMade": 0, "ftAttempts": 0, "threePointers": 4, "turnovers": 2 },
+          { "points": 27, "rebounds": 10, "assists": 16, "steals": 2, "blocks": 1, "fgMade": 9, "fgAttempts": 16, "ftMade": 6, "ftAttempts": 8, "threePointers": 3, "turnovers": 3 }
+        ]
+      }
+    ]
+}
