@@ -3,12 +3,25 @@
   "version": "1.0.0",
   "description": "A two player 9-category fantasy basketball game that uses real NBA stats",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "play": "node src/index.js"
   },
   "author": "Chernor Hamza J",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^20.14.9",
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "firebase": "^10.12.2",
+    "firebase-admin": "^12.1.1",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "jest": {
+    "transform": {}
   }
 }

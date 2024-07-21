@@ -1,8 +1,8 @@
-const Game = require('../src/game/game-logic')
-const Team = require('../src/game/team')
+import Game from '../src/game/game-logic';
+import Team from '../src/game/team';
 
 describe('Game class tests', () => {
-    let game, team1, team2;
+    let game, team1, team2, score;
 
     beforeEach(() => {
         team1 = new Team('team1');
@@ -11,13 +11,15 @@ describe('Game class tests', () => {
     })
 
     test('team 1 wins 5-4', () => {
-        team1.teamStats = { points: 100, rebounds: 50, assists: 50, steals: 10, blocks: 7, fgMade: 30, fgAttempts: 60, threePointers: 7, ftMade: 21, ftAttempts: 30, turnovers: 6 };
-        team2.teamStats = { points: 90, rebounds: 40, assists: 45, steals: 15, blocks: 8, fgMade: 30, fgAttempts: 65, threePointers: 9, ftMade: 21, ftAttempts: 35, turnovers: 4 };
+        team1.teamStats = { 'PTS': 100, 'TRB': 50, 'AST': 50, 'STL': 10, 'BLK': 7, 'FG': 30, 'FGA': 60, '3P': 7, 'FT': 21, 'FTA': 30, 'TOV': 6 };
+        team2.teamStats = { 'PTS': 90, 'TRB': 40, 'AST': 45, 'STL': 15, 'BLK': 8, 'FG': 30, 'FGA': 65, '3P': 9, 'FT': 21, 'FTA': 35, 'TOV': 4 };
 
-        const expectedTeam1Wins = ['points', 'rebounds', 'assists', 'fgPercentage', 'ftPercentage'];
-        const expectedTeam2Wins = ['steals', 'blocks', 'threePointers', 'turnovers'];
+        const expectedTeam1Wins = ['PTS', 'TRB', 'AST', 'FGP', 'FTP'];
+        const expectedTeam2Wins = ['STL', 'BLK', '3P', 'TOV'];
         
         score = game.calculateScore();
+
+        console.log(score.team1Wins);
 
         expect(score.team1Wins.length).toBe(5);
         expect(score.team2Wins.length).toBe(4);
@@ -28,12 +30,12 @@ describe('Game class tests', () => {
     });
 
     test('the teams are tied 3-3', () => {
-        team1.teamStats = { points: 100, rebounds: 50, assists: 50, steals: 10, blocks: 7, fgMade: 30, fgAttempts: 75, threePointers: 7, ftMade: 21, ftAttempts: 30, turnovers: 6 };
-        team2.teamStats = { points: 100, rebounds: 40, assists: 45, steals: 15, blocks: 7, fgMade: 30, fgAttempts: 75, threePointers: 9, ftMade: 21, ftAttempts: 35, turnovers: 4 };
+        team1.teamStats = { 'PTS': 100, 'TRB': 50, 'AST': 50, 'STL': 10, 'BLK': 7, 'FG': 30, 'FGA': 75, '3P': 7, 'FT': 21, 'FTA': 30, 'TOV': 6 };
+        team2.teamStats = { 'PTS': 100, 'TRB': 40, 'AST': 45, 'STL': 15, 'BLK': 7, 'FG': 30, 'FGA': 75, '3P': 9, 'FT': 21, 'FTA': 35, 'TOV': 4 };
 
-        const expectedTeam1Wins = ['rebounds', 'assists', 'ftPercentage'];
-        const expectedTeam2Wins = ['steals', 'threePointers', 'turnovers'];
-        const expectedTiedStats = ['points', 'blocks', 'fgPercentage'];
+        const expectedTeam1Wins = ['TRB', 'AST', 'FTP'];
+        const expectedTeam2Wins = ['STL', '3P', 'TOV'];
+        const expectedTiedStats = ['PTS', 'BLK', 'FGP'];
         
         score = game.calculateScore();
 
@@ -47,10 +49,10 @@ describe('Game class tests', () => {
     });
 
     test('team 2 wins in every stat', () => {
-        team1.teamStats = { points: 85, rebounds: 20, assists: 40, steals: 10, blocks: 7, fgMade: 30, fgAttempts: 66, threePointers: 7, ftMade: 21, ftAttempts: 36, turnovers: 6 };
-        team2.teamStats = { points: 90, rebounds: 40, assists: 45, steals: 15, blocks: 8, fgMade: 30, fgAttempts: 65, threePointers: 9, ftMade: 21, ftAttempts: 35, turnovers: 4 };
+        team1.teamStats = { 'PTS': 85, 'TRB': 20, 'AST': 40, 'STL': 10, 'BLK': 7, 'FG': 30, 'FGA': 66, '3P': 7, 'FT': 21, 'FTA': 36, 'TOV': 6 };
+        team2.teamStats = { 'PTS': 90, 'TRB': 40, 'AST': 45, 'STL': 15, 'BLK': 8, 'FG': 30, 'FGA': 65, '3P': 9, 'FT': 21, 'FTA': 35, 'TOV': 4 };
 
-        const expectedTeam2Wins = ['points', 'rebounds', 'assists', 'steals', 'blocks', 'fgPercentage', 'ftPercentage', 'threePointers', 'turnovers'];
+        const expectedTeam2Wins = ['PTS', 'TRB', 'AST', 'STL', 'BLK', 'FGP', 'FTP', '3P', 'TOV'];
         
         score = game.calculateScore();
 
@@ -62,10 +64,10 @@ describe('Game class tests', () => {
     });
 
     test('the teams are tied in every stat', () => {
-        team1.teamStats = { points: 100, rebounds: 50, assists: 50, steals: 10, blocks: 7, fgMade: 30, fgAttempts: 60, threePointers: 7, ftMade: 21, ftAttempts: 30, turnovers: 6 };
-        team2.teamStats = { points: 100, rebounds: 50, assists: 50, steals: 10, blocks: 7, fgMade: 30, fgAttempts: 60, threePointers: 7, ftMade: 21, ftAttempts: 30, turnovers: 6 };
+        team1.teamStats = { 'PTS': 100, 'TRB': 50, 'AST': 50, 'STL': 10, 'BLK': 7, 'FG': 30, 'FGA': 60, '3P': 7, 'FT': 21, 'FTA': 30, 'TOV': 6 };
+        team2.teamStats = { 'PTS': 100, 'TRB': 50, 'AST': 50, 'STL': 10, 'BLK': 7, 'FG': 30, 'FGA': 60, '3P': 7, 'FT': 21, 'FTA': 30, 'TOV': 6 };
 
-        const expectedTiedStats = ['points', 'rebounds', 'assists', 'steals', 'blocks', 'fgPercentage', 'ftPercentage', 'threePointers', 'turnovers'];
+        const expectedTiedStats = ['PTS', 'TRB', 'AST', 'STL', 'BLK', 'FGP', 'FTP', '3P', 'TOV'];
         
         score = game.calculateScore();
 
@@ -83,5 +85,4 @@ describe('Game class tests', () => {
         expect(game.calculatePercentage(15, 20)).toEqual(0.75)
         expect(game.calculatePercentage(0, 0)).toEqual(0)
     });
-
 });

@@ -1,32 +1,30 @@
-const getPlayers = require('./utility/read-stats');
-const Team = require('./game/team');
-const Game = require('./game/game-logic');
-const readline = require('readline');
+import Team from './game/team.js';
+import Game from './game/game-logic.js';
+import { getPlayer, getAllPlayers } from './utility/firestore.js';
+import { printPerformance } from './utility/print-performance.js';
+import readline from 'readline';
 
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-// Function to prompt the user with a question and return their response
 const prompt = (query) => new Promise(resolve => rl.question(query, resolve));
 
-// Run the play function to start the game
 play();
 
-// Function to play the game
 async function play() {
     // Get players
-    const players = getPlayers();
+    const players = await getAllPlayers();
 
     // Create teams
     const team1 = new Team('Team 1');
     const team2 = new Team('Team 2');
 
     console.log('Welcome to Fantasy Basketball Showdown!');
-    console.log('Each team will select 3 players.');
+    console.log('Each team will select 5 players.');
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
         await selectPlayer(players, team1, i + 1);
         await selectPlayer(players, team2, i + 1);
     }
@@ -38,15 +36,22 @@ async function play() {
 
     const game = new Game(team1, team2);
     let score;
+    let t1first = true;
 
-    for (let i = 0; i < 3; i++) {
-        await selectPerformance(team1);
-        await selectPerformance(team2);
+    for (let i = 0; i < 5; i++) {
+        if (t1first) {
+            await selectPerformance(team1);   
+            logStats(team1, team2);    
+            await selectPerformance(team2);
+        } else {
+            await selectPerformance(team2);
+            logStats(team1, team2);
+            await selectPerformance(team1);
+        }
 
-        console.log(`Team 1 Stats: ${JSON.stringify(team1.teamStats)}`);
-        console.log(`Team 2 Stats: ${JSON.stringify(team2.teamStats)}`);
-
-        console.log('**********************************************************************************************');
+        t1first = !t1first;
+        
+        logStats(team1, team2); 
         score = game.calculateScore();
         console.log(`Team 1 Wins: ${score.team1Wins}`);
         console.log(`Team 2 Wins: ${score.team2Wins}`);
@@ -66,6 +71,13 @@ async function play() {
     rl.close();
 }
 
+function logStats(t1, t2) {
+    console.log('**********************************************************************************************');
+    console.log(t1.printStats());
+    console.log(t2.printStats());
+    console.log('**********************************************************************************************');
+}
+
 async function selectPlayer(players, team, playerNum) {
     console.log(`\n${team.name}, it's your turn to select a player.`);
     players.forEach((player, index) => {
@@ -81,7 +93,8 @@ async function selectPlayer(players, team, playerNum) {
         console.log('Invalid selection, please try again.');
     }
 
-    team.addPlayer(players[playerIndex]);
+    const player = await getPlayer(players[playerIndex].name, players[playerIndex].id);
+    team.addPlayer(player);
     players.splice(playerIndex, 1)
 }
 
@@ -107,7 +120,7 @@ async function selectPerformance(team) {
     const performances = team.players.get(selectedPlayer);
     console.log(`\n${team.name}, please select a performance for ${selectedPlayer}.`);
     performances.forEach((performance, index) => {
-        console.log(`${index + 1}. ${JSON.stringify(performance)}`);
+        console.log(`${index + 1}. ${printPerformance(performance)}`);
     });
 
     let performanceIndex;
