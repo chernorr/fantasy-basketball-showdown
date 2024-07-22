@@ -18,8 +18,8 @@ async function play() {
     const players = await getAllPlayers();
 
     // Create teams
-    const team1 = new Team('Team 1');
-    const team2 = new Team('Team 2');
+    const team1 = new Team('Player 1');
+    const team2 = new Team('Player 2');
 
     console.log('Welcome to Fantasy Basketball Showdown!');
     console.log('Each team will select 5 players.');
@@ -29,8 +29,8 @@ async function play() {
         await selectPlayer(players, team2, i + 1);
     }
 
-    console.log(`Team 1 Players: ${[...team1.players.keys()]}`);
-    console.log(`Team 2 Players: ${[...team2.players.keys()]}`);
+    console.log(`Player 1 Players: ${[...team1.players.keys()]}`);
+    console.log(`Player 2 Players: ${[...team2.players.keys()]}`);
 
     console.log('\nTeams have selected their players. Now, each team will select performances for their players.');
 
@@ -53,17 +53,17 @@ async function play() {
         
         logStats(team1, team2); 
         score = game.calculateScore();
-        console.log(`Team 1 Wins: ${score.team1Wins}`);
-        console.log(`Team 2 Wins: ${score.team2Wins}`);
+        console.log(`Player 1 Wins: ${score.team1Wins}`);
+        console.log(`Player 2 Wins: ${score.team2Wins}`);
         console.log(`Tied Stats: ${score.tiedStats}`);
     }
 
     console.log('**********************************************************************************************');
     console.log(`\nGame Over!`);
     if (score.team1Wins.length > score.team2Wins.length) {
-        console.log('Team 1 is the winner!');
+        console.log('Player 1 is the winner!');
     } else if (score.team2Wins.length > score.team1Wins.length) {
-        console.log('Team 2 is the winner!');
+        console.log('Player 2 is the winner!');
     } else {
         console.log('The game is a tie!');
     }
